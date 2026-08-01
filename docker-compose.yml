@@ -1,0 +1,26 @@
+# One-command run:  docker compose up --build
+# Frontend -> http://localhost:5173   Backend API -> http://localhost:8000
+#
+# GEMINI_API_KEY is optional. Set it (in a .env file next to this compose file,
+# or in your shell) to run live Gemini extraction; leave it unset and the
+# backend falls back to deterministic mock data so the app works offline.
+services:
+  backend:
+    build: ./backend
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - GEMINI_MODEL=${GEMINI_MODEL:-gemini-flash-latest}
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  frontend:
+    build: ./frontend
+    depends_on:
+      - backend
+    ports:
+      - "5173:80"

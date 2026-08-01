@@ -1,0 +1,65 @@
+# ---------------------------------------------------------------------------
+# Secrets — never commit. These patterns have no slash, so git applies them at
+# every directory depth (covers both ./.env and ./backend/.env).
+# ---------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets.json
+credentials.json
+
+# ---------------------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ---------------------------------------------------------------------------
+# Node / frontend build output
+# ---------------------------------------------------------------------------
+node_modules/
+dist/
+.vite/
+npm-debug.log*
+yarn-error.log*
+
+# ---------------------------------------------------------------------------
+# Local tooling / editor state
+# ---------------------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+
+# ---------------------------------------------------------------------------
+# OS noise
+# ---------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------------------------------------------------------------------------
+# Scratch / verification artifacts. Underscore-prefixed files are throwaway
+# renders produced while checking page fit (see backend/_check_fit.py).
+# NOTE: examples/*.pdf are deliverables and are intentionally NOT ignored.
+# ---------------------------------------------------------------------------
+_*.png
+_*.html
+_*.txt
+_docx_extract/
+
+# ---------------------------------------------------------------------------
+# Third-party source material, kept locally but not redistributed:
+# the Geojit broker note used as the layout reference, and the original
+# assessment brief.
+# ---------------------------------------------------------------------------
+Eternal-Geojit.pdf
+*.docx
